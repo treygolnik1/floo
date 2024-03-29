@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html>
+<head>
+    <title>Онлайн магазин цветов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            margin-top: 20px;
+            color: #333;
+        }
+        .flower {
+            display: inline-block;
+            margin: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            padding: 15px;
+            width: 250px;
+            box-shadow: 4px 4px 8px #ccc;
+        }
+        .flower img {
+            width: 200px;
+            border-radius: 5px;
+        }
+        p {
+            color: #065;
+        }
+    </style>
+</head>
+<body>
+    <h1>Добро пожаловать в магазин цветов "Цветочный рай"!</h1>
+
+    <div class="flower">
+        <img src="{{ pic }}"/>
+        <p>Роза</p>
+        <p>Цена: 70р</p>
+        <a class="btn btn-success" href="/pay">купить</a>
+    </div>>
+    <div class="flower">
+        <img src="{{ pic2 }}"/>
+        <p>Тюльпан</p>
+        <p>Цена: 60р</p>
+        <a class="btn btn-success" href="/pay">купить</a>
+    </div>
+
+    <div class="flower">
+        <img src="{{ pic3 }}"/>
+        <p>Букет "Розовый роман"</p>
+        <p>Описание: Красивый букет из нежных роз и гипсофилов. Идеальный выбор для вашей второй половинки.</p>
+        <p>Цена: 1900р</p>
+        <a class="btn btn-success" href="/pay">купить</a>
+    </div>
+
+    <div class="flower">
+        <img src="{{ pic4 }}"/>
+        <p>Букет "Летний сад"</p>
+        <p>Описание: Свежие яркие цветы, напоминающие летний солнечный день. Прекрасный подарок для дорогого человека.</p>
+        <p>Цена: 1200р</p>
+        <a class="btn btn-success" href="/pay">купить</a>
+    </div>
+    <!-- Добавьте еще букеты, а также измените изображения на соответствующие вам -->
+</body>
+{% endblock %}
