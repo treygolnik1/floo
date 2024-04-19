@@ -5,14 +5,17 @@ from flask import Flask, request, make_response, session, redirect, render_templ
 from flask_login import LoginManager, login_user, login_required, logout_user
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileRequired, FileAllowed
+from sqlalchemy.sql.functions import user
 from werkzeug.utils import secure_filename, send_from_directory
 from wtforms import FileField
 
 from data import db_session
 from data.users import User
+from forms.flowers import FlowerForm
 from forms.loginform import LoginForm
 from forms.registerform import RegisterForm
 
+KEY = False
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 login_manager = LoginManager()
@@ -52,6 +55,7 @@ def session_test():
 
 #################################################################################################
 
+
 @login_manager.user_loader
 def load_user(user_id):
     db_sess = db_session.create_session()
@@ -73,29 +77,17 @@ def login():
                                form=form)
     return render_template('login.html', title='Авторизация', form=form)
 
-
-###########################################################################
-pic = os.path.join('static', "im")
-app.config['UPLOAD_FOLDER'] = pic
-
-
-# class FlowerForm(FlaskForm):
-#     pic = os.path.join(app.config['UPLOAD_FOLDER'], 'fl1.jpg')
-#     pic2 = os.path.join(app.config['UPLOAD_FOLDER'], 'fl2.jpg')
-#     pic3 = os.path.join(app.config['UPLOAD_FOLDER'], 'fl3.jpg')
-#     pic4 = os.path.join(app.config['UPLOAD_FOLDER'], 'fl4.jpg')
-
-
+#######################################################################
+####
 @app.route("/")
-@app.route("/success")
+@app.route("/success", methods=['GET', 'POST'])
 def success():
-    # form = FlowerForm()
-    # return render_template('success.html', form=form)
-    pic = os.path.join(app.config['UPLOAD_FOLDER'], 'fl1.jpg')
-    pic2 = os.path.join(app.config['UPLOAD_FOLDER'], 'fl2.jpg')
-    pic3 = os.path.join(app.config['UPLOAD_FOLDER'], 'fl3.jpg')
-    pic4 = os.path.join(app.config['UPLOAD_FOLDER'], 'fl4.jpg')
-    return render_template('success.html', pic=pic, pic2=pic2, pic3=pic3, pic4 = pic4)
+    form = FlowerForm()
+    pic = url_for('static', filename='im/1.jpg')
+    pic2 = url_for('static', filename='im/fl2.jpg')
+    pic3 = url_for('static', filename='im/fl3.jpg')
+    pic4 = url_for('static', filename='im/fl4.jpg')
+    return render_template('success.html', pic=pic, pic2=pic2, pic3=pic3, pic4=pic4, form=form)
 
 
 ####################################################
@@ -103,6 +95,7 @@ def success():
 @app.route("/pay")
 def pay():
     return render_template('pay.html')
+
 
 ################################################
 
