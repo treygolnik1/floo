@@ -36,18 +36,26 @@
 </head>
 <body>
     <h1>Добро пожаловать в магазин цветов "Цветочный рай"!</h1>
-
+    <form action="" method="post" novalidate>
     <div class="flower">
         <img src="{{ pic }}"/>
-        <p>Роза</p>
-        <p>Цена: 70р</p>
+        <p>{{ form.fl1.label }}</p>
+        <p>{{ form.pr1.label }}</p>
+        {% if current_user.is_authenticated %}
         <a class="btn btn-success" href="/pay">купить</a>
-    </div>>
+        {% else %}
+        <p>Чтобы купить надо войти</p>
+        {% endif %}
+    </div>
     <div class="flower">
         <img src="{{ pic2 }}"/>
         <p>Тюльпан</p>
         <p>Цена: 60р</p>
+        {% if current_user.is_authenticated %}
         <a class="btn btn-success" href="/pay">купить</a>
+        {% else %}
+        <p>Чтобы купить надо войти</p>
+        {% endif %}
     </div>
 
     <div class="flower">
@@ -55,7 +63,11 @@
         <p>Букет "Розовый роман"</p>
         <p>Описание: Красивый букет из нежных роз и гипсофилов. Идеальный выбор для вашей второй половинки.</p>
         <p>Цена: 1900р</p>
+        {% if current_user.is_authenticated %}
         <a class="btn btn-success" href="/pay">купить</a>
+        {% else %}
+        <p>Чтобы купить надо войти</p>
+        {% endif %}
     </div>
 
     <div class="flower">
@@ -63,8 +75,14 @@
         <p>Букет "Летний сад"</p>
         <p>Описание: Свежие яркие цветы, напоминающие летний солнечный день. Прекрасный подарок для дорогого человека.</p>
         <p>Цена: 1200р</p>
+        {% if current_user.is_authenticated %}
         <a class="btn btn-success" href="/pay">купить</a>
+        {% else %}
+        <p>Чтобы купить надо войти</p>
+        {% endif %}
     </div>
     <!-- Добавьте еще букеты, а также измените изображения на соответствующие вам -->
+
 </body>
+
 {% endblock %}
